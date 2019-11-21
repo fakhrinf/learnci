@@ -30,9 +30,9 @@ class Contact_model extends CI_Model
         $this->db->update('contact', $this, ['id' => $_POST['id']]);
     }
 
-    public function deletecontact()
+    public function deletecontact($id)
     {
-        $this->db->delete('contact', ['id' => $_POST['id']]);
+        $this->db->delete('contact', ['id' => $id]);
     }
 }
 

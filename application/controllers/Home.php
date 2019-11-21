@@ -17,4 +17,10 @@ class Home extends CI_Controller
             'contact' => $contact
         ]);
     }
+
+    public function delete($id)
+    {
+        $this->contactmod->deletecontact($id);
+        redirect('/home/');
+    }
 }
