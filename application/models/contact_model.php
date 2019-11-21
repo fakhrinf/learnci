@@ -8,7 +8,13 @@ class Contact_model extends CI_Model
     
     public function getallcontact()
     {
-        $data = $this->db->get('contact')->result();
+        $data = $this->db->from('contact')->order_by('id', 'desc')->get()->result();
+        return $data;
+    }
+
+    public function getcontact($id)
+    {
+        $data = $this->db->get_where('contact', ['id' => $id])->result();
         return $data;
     }
 
@@ -16,7 +22,7 @@ class Contact_model extends CI_Model
     {
         $this->name = $_POST['name'];
         $this->phone = $_POST['phone'];
-        $this->contact = $_POST['email'];
+        $this->email = $_POST['email'];
 
         $this->db->insert('contact', $this);
     }
@@ -25,7 +31,7 @@ class Contact_model extends CI_Model
     {
         $this->name = $_POST['name'];
         $this->phone = $_POST['phone'];
-        $this->contact = $_POST['email'];
+        $this->email = $_POST['email'];
 
         $this->db->update('contact', $this, ['id' => $_POST['id']]);
     }

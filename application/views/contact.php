@@ -28,25 +28,38 @@
         table tr th, td {
             border: 1px black solid;
         }
+
+        .alert-success{
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color:white;
+        }
     </style>
 </head>
 <body>
 
     <section id="main" style="width:50%;margin:20px auto;">
+        <?php if(!empty($this->session->flashdata('message'))):?>
+            <div class="alert-success">
+                <p><?=$this->session->flashdata('message')?></p>
+            </div>
+        <?php endif;?>
 
         <fieldset>
             <legend>Contact form</legend>
-            <form action="" method="post">
+            <form action="<?=site_url('home/manage')?>" method="post">
                 <p>
-                    name: <input type="text" name="name" id="nameid" plaholder="input name">
+                    name: <input type="text" name="name" id="nameid" plaholder="input name" value="<?=(isset($data)) ? $data->name : ''?>">
                 </p>
                 <p>
-                    email: <input type="email" name="name" id="nameid" plaholder="input name">
+                    email: <input type="email" name="email" id="emailid" plaholder="input name" value="<?=(isset($data)) ? $data->email : ''?>">
                 </p>
                 <p>
-                    phone: <input type="number" name="name" id="nameid" plaholder="input name">
+                    phone: <input type="number" name="phone" id="phoneid" plaholder="input name" value="<?=(isset($data)) ? $data->phone : ''?>">
                 </p>
                 <p>
+                    <input type="hidden" name="id" value="<?=(isset($data)) ? $data->id : 0 ?>">
                     <input type="submit" value="SAVE">
                 </p>
             </form>
