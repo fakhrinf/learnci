@@ -63,17 +63,22 @@
                     <th>Phone</th>
                     <th colspan="2">Action</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Fakhri</td>
-                    <td>fakhrinf@hotmail.com</td>
-                    <td>081297128773</td>
-                    <td><a href="#">Edit</a></td>
-                    <td><a href="#">Delete</a></td>
-                </tr>
-                <tr>
-                    <td colspan="6" style="text-align:center;">No Data</td>
-                </tr>
+                <?php if (isset($contact) && !empty($contact)): ?>
+                    <?php foreach ($contact as $i => $c): ?>
+                        <tr>
+                            <td><?=$i+1?></td>
+                            <td><?=$c->name?></td>
+                            <td><?=$c->email?></td>
+                            <td><?=$c->phone?></td>
+                            <td><a href="<?=site_url('home/edit/'.$c->id)?>">Edit</a></td>
+                            <td><a href="<?=site_url('home/delete/'.$c->id)?>">Delete</a></td>
+                        </tr>
+                    <?php endforeach;?>
+                <?php else:?>
+                    <tr>
+                        <td colspan="6" style="text-align:center;">No Data</td>
+                    </tr>
+                <?php endif; ?>
             </table>
 
         </fieldset>
